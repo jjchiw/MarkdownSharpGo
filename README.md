@@ -16,7 +16,9 @@ I coded a simple Markdown console, put it in the path and use it like [stimmelop
 	markdownsharpgo.exe /f $(FILE_NAME) /o launch
 	
 **CMD**
-	markdownsharpgo.exe /f $(FILE_NAME) /o launch
+	markdownsharpgo.exe /f [FILE_NAME] /o launch
+	markdownsharpgo.exe /f [FILE_NAME] /o console
+	markdownsharpgo.exe /f [FILE_NAME] /o file
 	
 **Arguments**
 	/f File to be parsed
