@@ -11,6 +11,8 @@ I coded a simple Markdown console, put it in the path and use it like [stimmelop
 
 ## Usage
 
+[Editing Markdown][4]
+
 **NppExec Plugin (Notepad++)**
 	cd $(CURRENT_DIRECTORY)
 	markdownsharpgo.exe /f $(FILE_NAME) /o launch
@@ -28,6 +30,7 @@ I coded a simple Markdown console, put it in the path and use it like [stimmelop
 [1]: http://code.google.com/p/markdownsharp/
 [2]: https://github.com/littlebits/args
 [3]: http://www.stimmelopolis.com/blog/2010/02/16/markdown-in-notepad-2/
+[4]: http://stackoverflow.com/editing-help
 	
 ## Copyright and License
 
