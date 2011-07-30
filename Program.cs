@@ -8,7 +8,7 @@ namespace MarkdownSharpGo
 {
     public enum Output
     {
-        launch, console, file
+        console, launch, file
     }
 
     public class CommandObject
@@ -24,24 +24,33 @@ namespace MarkdownSharpGo
             try
             {
                 var command = Args.Configuration.Configure<CommandObject>().CreateAndBind(args);
-
-                var m = new MarkdownSharp.Markdown();
-                var output = m.Transform(FileContents(command.File));
-
-                switch (command.Output)
-                {
-                    case Output.console:
-                        Console.WriteLine(output);
-                        break;
-                    case Output.file:
-                        File.WriteAllText(Path.ChangeExtension(command.File, "html"), output);
-                        break;
-                    case Output.launch:
-                        var tempfile = Path.ChangeExtension(Path.GetTempFileName(), "html");
-                        File.WriteAllText(tempfile, output);
-                        System.Diagnostics.Process.Start(tempfile);
-                        break;
-                }
+				
+				if(command.File != null)
+				{
+					var m = new MarkdownSharp.Markdown();
+	                var output = m.Transform(FileContents(command.File));
+	
+	                switch (command.Output)
+	                {
+	                    case Output.file:
+	                        File.WriteAllText(Path.ChangeExtension(command.File, "html"), output);
+	                        break;
+	                    case Output.launch:
+	                        var tempfile = Path.ChangeExtension(Path.GetTempFileName(), "html");
+	                        File.WriteAllText(tempfile, output);
+	                        System.Diagnostics.Process.Start(tempfile);
+	                        break;
+						case Output.console:
+							Console.WriteLine(output);
+							break;
+	                }
+				}
+				else
+				{
+					Console.WriteLine("Usage Example:");
+					Console.WriteLine("mono MarkdownSharpGo.exe /f <filename> [optional] /o launch | /o file");
+				}
+                
 
             }
             catch (FormatException e)
@@ -63,6 +72,7 @@ namespace MarkdownSharpGo
             }
             catch (FileNotFoundException e)
             {
+				Console.WriteLine (e);
                 return "";
             }
 
